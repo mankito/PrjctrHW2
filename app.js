@@ -2,42 +2,23 @@
 
 //Task1
 
-function timeBetweenDates(a = '25 May 2023', b = Date.now(), units = 'days') {
-    let date1 = new Date(a);
-    let date2 = new Date(b);
-    let difference = date2.getTime() - date1.getTime();
-        if (units === 'seconds') {
-            return Math.abs(difference / 1000)
-        } else if (units === 'minutes') {
-            return Math.abs(difference / (1000 * 60))
-        } else if (units === 'hours') {
-            return Math.abs(difference / (1000 * (60*60)))
-        } else if (units === 'days') {
-            //додав Math.floor, щоб коректно відображався результат моїх дефолтів
-            return Math.floor(Math.abs(difference / (1000 * (60*60) * 24)))
-        } else {
-            return 'Unit ' + units + ' is not supported' 
-        }
-      }
-
-// function timeBetweenDates(a = '25 May 2023', b = Date.now(), units = 'days') {
-//     let date1 = new Date(a);
-//     let date2 = new Date(b);
-//     let difference = date2.getTime() - date1.getTime();
-//     switch (units) {
-//         case 'seconds':
-//             return Math.abs(difference / 1000)
-//         case 'minutes':
-//             return Math.abs(difference / (1000 * 60))
-//         case 'hours':
-//             return Math.abs(difference / (1000 * (60*60)))
-//         case 'days':
-//             //додав Math.floor, щоб коректно відображався результат моїх дефолтів
-//             return Math.floor(Math.abs(difference / (1000 * (60*60) * 24)))
-//         default:
-//             return 'Such unit is not supported'
-//         }
-//       }
+function timeBetweenDates(startDate = new Date('25 May 2023'), endDate = new Date(), units = 'days') {
+    let date1 = new Date(startDate);
+    let date2 = new Date(endDate);
+    let difference = (date2.getTime() - date1.getTime()) / 1000;
+    switch (units) {
+      case 'seconds':
+        return Math.abs(difference);
+      case 'minutes':
+        return Math.abs(difference / 60);
+      case 'hours':
+        return Math.abs(difference / (60 * 60));
+      case 'days':
+        return Math.floor(Math.abs(difference / (60 * 60 * 24)));
+      default:
+        return 'Unit ' + units + ' is not supported';
+    }
+}
 
 console.log(timeBetweenDates('02 Aug 1985', '03 Aug 1985', 'seconds'));
 console.log(timeBetweenDates('31 Jan 2022', '03 Feb 2021', 'days'));
